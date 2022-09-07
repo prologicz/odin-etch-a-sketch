@@ -1,22 +1,62 @@
-console.log('Hello World');
+console.log('Odin Etch-a-Sketch');
 
-const gridContainer = document.querySelector('.grid-container');
-//gridContainer.style.gridTemplateColumns = 'repeat(10, 5em)';
+//Initialize 64x64 grid which can be drawn on
+let gridLength = 64;
+let gridSize = gridLength * gridLength
+createGrid(gridSize);
+draw();
 
-for (i=0; i < 256; i++){
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('grid-box');
-    newDiv.id = `div-${i}`
-    gridContainer.appendChild(newDiv);
+
+//Select Grid Size button which clears current Grid and resets based on size chosen.
+const gridSizeButton = document.querySelector('#grid-size-button');
+gridSizeButton.addEventListener('click', (e) => {
+    gridLength = prompt("Select a grid length: \n(Note: Max value is 100)");
+    if (gridLength > 100) gridLength = 100;
+    gridSize = gridLength * gridLength;
+    
+
+
+    clearGrid();
+    createGrid(gridSize);
+    draw();
+    
+})
+
+
+
+
+/
+function createGrid (gridSize) { //Function to create a grid based on "gridLength"
+    const gridContainer = document.querySelector('.grid-container');
+    gridContainer.style.gridTemplateColumns = `repeat(${gridLength}, ${750/gridLength}px)`;
+    gridContainer.style.gridTemplateRows = `repeat(${gridLength}, ${750/gridLength}px)`;
+
+    for (i=0; i < gridSize; i++){
+        const newDiv = document.createElement('div');
+        newDiv.classList.add('grid-box');
+        newDiv.id = `div-${i}`
+        gridContainer.appendChild(newDiv);
+
+    }
+
 
 }
 
-const gridBoxes = document.querySelectorAll('.grid-box');
-gridBoxes.forEach(box => box.addEventListener('mouseover', (e) => {
+function clearGrid() {//Function to clear grid
+    const gridContainer = document.querySelector('.grid-container')
+    const gridBoxes = document.querySelectorAll('.grid-box')
 
-    e.target.classList.add('grid-box-mouseover');
-    console.log(e.target.id);
-    console.log(e.target.classList);
-}))
+    gridBoxes.forEach(box => { 
+        gridContainer.removeChild(box);
+    })
+}
 
-console.log(gridBoxes);
+function draw(e) {//Function to listen for mouseover and apply class to color in grid
+    const gridBoxes = document.querySelectorAll('.grid-box');
+    gridBoxes.forEach(box => box.addEventListener('mouseover', (e) => {
+    
+        e.target.classList.add('grid-box-mouseover');
+        console.log(e.target.id);
+        console.log(e.target.classList);
+    }))
+}
