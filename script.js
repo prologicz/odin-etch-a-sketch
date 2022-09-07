@@ -25,8 +25,8 @@ gridSizeButton.addEventListener('click', (e) => {
 
 
 
-/
-function createGrid (gridSize) { //Function to create a grid based on "gridLength"
+
+function createGrid(gridSize) {
     const gridContainer = document.querySelector('.grid-container');
     gridContainer.style.gridTemplateColumns = `repeat(${gridLength}, ${750/gridLength}px)`;
     gridContainer.style.gridTemplateRows = `repeat(${gridLength}, ${750/gridLength}px)`;
@@ -42,7 +42,7 @@ function createGrid (gridSize) { //Function to create a grid based on "gridLengt
 
 }
 
-function clearGrid() {//Function to clear grid
+function clearGrid() {
     const gridContainer = document.querySelector('.grid-container')
     const gridBoxes = document.querySelectorAll('.grid-box')
 
@@ -51,7 +51,7 @@ function clearGrid() {//Function to clear grid
     })
 }
 
-function draw(e) {//Function to listen for mouseover and apply class to color in grid
+function draw(e) {
     const gridBoxes = document.querySelectorAll('.grid-box');
     gridBoxes.forEach(box => box.addEventListener('mouseover', (e) => {
     
