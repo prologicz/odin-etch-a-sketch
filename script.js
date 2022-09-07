@@ -24,8 +24,6 @@ gridSizeButton.addEventListener('click', (e) => {
 
 
 
-
-
 function createGrid(gridSize) {
     const gridContainer = document.querySelector('.grid-container');
     gridContainer.style.gridTemplateColumns = `repeat(${gridLength}, ${750/gridLength}px)`;
@@ -56,6 +54,7 @@ function draw(e) {
     gridBoxes.forEach(box => box.addEventListener('mouseover', (e) => {
     
         e.target.classList.add('grid-box-mouseover');
+        e.target.style.opacity -= '-0.1';
         console.log(e.target.id);
         console.log(e.target.classList);
     }))
