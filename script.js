@@ -54,8 +54,15 @@ function draw(e) {
     gridBoxes.forEach(box => box.addEventListener('mouseover', (e) => {
     
         e.target.classList.add('grid-box-mouseover');
-        e.target.style.opacity -= '-0.1';
-        console.log(e.target.id);
-        console.log(e.target.classList);
+        e.target.style.opacity -= '-0.2';
+        e.target.style.backgroundColor = '#' + randomColor();
+        console.log(randomColor());
+        //console.log(e.target.id);
+        //console.log(e.target.classList);
     }))
+}
+
+function randomColor () {
+    let randomColor = Math.floor(Math.random()*16777215).toString(16);
+    return randomColor;
 }
